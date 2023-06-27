@@ -82,7 +82,7 @@ int _myunsetenv(info_t *info)
  */
 int populate_env_list(info_t *info)
 {
-	size_t i
+	size_t i;
 	list_t *node = NULL;
 
 	for (i = 0; environ[i]; i++)
