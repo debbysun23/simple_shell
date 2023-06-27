@@ -37,7 +37,7 @@ char *_strdup(const char *str)
 		return (NULL);
 	while (*str++)
 		lnth++;
-	ret = malloc(sizeof(char) * (lnth + 1));
+	rt = malloc(sizeof(char) * (lnth + 1));
 	if (!rt)
 		return (NULL);
 	for (lnth++; lnth--;)
@@ -75,7 +75,7 @@ int _putchar(char c)
 	static char buf[WRITE_BUF_SIZE];
 	static int it;
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (c == BUF_FLUSH || it >= WRITE_BUF_SIZE)
 	{
 		write(1, buf, it);
 		it = 0;

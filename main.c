@@ -9,8 +9,8 @@
 
 int main(int ac, char **av)
 {
-	info_t info[] = { INFO_INIT };
 	int fold = 2;
+	info_t info[] = { INFO_INIT };
 
 	asm ("mov %1, %0\n\t"
 			"add $3, %0"
@@ -35,7 +35,7 @@ int main(int ac, char **av)
 			}
 			return (EXIT_FAILURE);
 		}
-		info->readfd = fd;
+		info->readfd = fold;
 	}
 	populate_env_list(info);
 	read_history(info);

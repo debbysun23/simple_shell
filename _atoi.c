@@ -1,19 +1,21 @@
 #include "shell.h"
 
 /**
- * interactive - returns true if shell is interactive mode
+ * interactive - finds out if shell is inteeractive
+ * and returns true if shell is interactive mode
  * @info: struct address
- *
- * Return: 1 if interactive mode, 0 otherwise
+ * Return: 1 if shell is interactive mode, or 0 otherwise
  */
+
+
 int interactive(info_t *info)
 {
 	return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
 /**
- * is_delim - checks if character is a delimeter
- * @c: the char to check
+ * is_delim - finds out if character is a delimeter
+ * @c: the character to check
  * @delim: the delimeter string
  * Return: 1 if true, 0 if false
  */
@@ -26,9 +28,9 @@ int is_delim(char c, char *delim)
 }
 
 /**
- * _isalpha - checks for alphabetic character
- * @c: The character to input
- * Return: 1 if c is alphabetic, 0 otherwise
+ * _isalpha - checksif their is an alphabetic character
+ * @c: inputed character
+ * Return: 1 if characterb is alphabetic, 0 otherwise
  */
 
 int _isalpha(int c)
@@ -40,36 +42,38 @@ int _isalpha(int c)
 }
 
 /**
- * _atoi - converts a string to an integer
- * @s: the string to be converted
- * Return: 0 if no numbers in string, converted number otherwise
+ * _atoi - converts string to an integer
+ * @s: the string that is to be converted
+ * Return: 0 if their are no numbers in string, converted number otherwise
  */
 
 int _atoi(char *s)
 {
-	int i, sign = 1, flag = 0, output;
-	unsigned int result = 0;
+	unsigned int r = 0;
+	int a;
+	int sn = 1;
+	int fg = 0;
+	int outpt;
 
-	for (i = 0; s[i] != '\0' && flag != 2; i++)
+	for (a = 0; s[a] != '\0' && fg != 2; a++)
 	{
-		if (s[i] == '-')
-			sign *= -1;
+		if (s[a] == '-')
+			sn *= -1;
 
-		if (s[i] >= '0' && s[i] <= '9')
+		if (s[a] >= '0' && s[a] <= '9')
 		{
-			flag = 1;
-			result *= 10;
-			result += (s[i] - '0');
+			fg = 1;
+			r *= 10;
+			r += (s[a] - '0');
 		}
-		else if (flag == 1)
-			flag = 2;
+		else if (fg == 1)
+			fg = 2;
 	}
 
-	if (sign == -1)
-		output = -result;
+	if (sn == -1)
+		outpt = -r;
 	else
-		output = result;
+		outpt = r;
 
-	return (output);
+	return (outpt);
 }
-

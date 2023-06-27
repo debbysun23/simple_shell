@@ -14,7 +14,7 @@ list_t *add_node(list_t **head, const char *str, int num)
 
 	if (!head)
 		return (NULL);
-	new_head = malloc(sizeof(list_t));
+	nw_hd = malloc(sizeof(list_t));
 	if (!nw_hd)
 		return (NULL);
 	_memset((void *)nw_hd, 0, sizeof(list_t));
@@ -120,14 +120,14 @@ int delete_node_at_index(list_t **head, unsigned int index)
 	node = *head;
 	while (node)
 	{
-		if (i == index)
+		if (a == index)
 		{
 			pnode->next = node->next;
 			free(node->str);
 			free(node);
 			return (1);
 		}
-		i++;
+		a++;
 		pnode = node;
 		node = node->next;
 	}

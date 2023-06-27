@@ -36,12 +36,12 @@ int write_history(info_t *info)
 {
 	list_t *nd = NULL;
 	ssize_t fold;
-	char *fname = get_history_file(info)
+	char *fname = get_history_file(info);
 
 	if (!fname)
 		return (-1);
 
-	fold = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
+	fold = open(fname, O_CREAT | O_TRUNC | O_RDWR, 0644);
 	free(fname);
 	if (fold == -1)
 		return (-1);
@@ -88,14 +88,14 @@ int read_history(info_t *info)
 	if (rdlen <= 0)
 		return (free(buffer), 0);
 	close(fold);
-	for (i = 0; i < flsize; i++)
-		if (buffer[i] == '\n')
+	for (in = 0; in < flsize; in++)
+		if (buffer[in] == '\n')
 		{
-			buffer[i] = 0;
+			buffer[in] = 0;
 			build_history_list(info, buffer + lst, lcount++);
-			last = i + 1;
+			lst = in + 1;
 		}
-	if (lst != i)
+	if (lst != in)
 		build_history_list(info, buffer + lst, lcount++);
 	free(buffer);
 	info->histcount = lcount;
@@ -119,7 +119,7 @@ int build_history_list(info_t *info, char *buf, int linecount)
 
 	if (info->history)
 		nd = info->history;
-	add_node_end(&nd, buffer, lcount);
+	add_node_end(&nd, buf, linecount);
 
 	if (!info->history)
 		info->history = nd;
